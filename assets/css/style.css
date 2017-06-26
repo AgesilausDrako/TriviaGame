@@ -7,6 +7,17 @@ body {
 	background-color: #cc0000;
 }
 
+#timer {
+	color: #fff;
+	background-color: #000;
+	padding: .75em;
+	margin: 0;
+}
+
+.almostUp {
+	color: #cc0000;
+}
+
 #game-box {
 	font-size: 2em;
 	background-image: url("../images/green_cup.png");
@@ -17,4 +28,20 @@ footer {
 	background-color: black;
 	padding: 1em;
 }
+
+#bear {
+	margin-left: 9em;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 768px){
+  #bear {
+      width: 100%;
+      margin: 0;
+  }
+}
+
+
+
 
