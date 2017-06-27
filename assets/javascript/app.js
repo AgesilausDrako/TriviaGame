@@ -1,34 +1,64 @@
 $("document").ready(function(){
-
+	
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
 	var unansweredGuesses = 0;
-	
+	var correctArray = ["Grigori Rasputin", "Nicholas II", "Georgi Plekhanov",
+					"Alexander Solzhenitsyn", "Yuri Modin"];
 	var gameHtml = "";
 
-	var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
+	
+
+	function gameResults () {
+
+		// if ($(":checked").val() === "Grigori Rasputin") {
+		// 	correctGuesses++;
+		// } else if ($(":checked").val() != "Grigori Rasputin") {
+		// 	incorrectGuesses++;
+		// } 
+
+		if ($('input[type="radio"][name=monk]:checked').val() === "Grigori Rasputin") {
+			correctGuesses++;
+		} else {
+			incorrectGuesses++;
+		}
+
+
+		if ($('input[type="radio"][name=tsar]:checked').val() === "Nicholas II") {
+			correctGuesses++;
+		} else {
+			incorrectGuesses++;
+		}
+
+		if ($('input[type="radio"][name=book]:checked').val() === "Georgi Plekhanov") {
+			correctGuesses++;
+		} else {
+			incorrectGuesses++;
+		}
+
+		if ($('input[type="radio"][name=dissident]:checked').val() === "Alexander Solzhenitsyn") {
+			correctGuesses++;
+		} else {
+			incorrectGuesses++;
+		}
+
+		if ($('input[type="radio"][name=agent]:checked').val() === "Yuri Modin") {
+			correctGuesses++;
+		} else {
+			incorrectGuesses++;
+		}
+
+	
+		var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
 						"<h1 class='text-center'>Incorrect Answers: " + incorrectGuesses + "</h1>" +
 						"<h1 class='text-center'>Unanswered Questions: " + unansweredGuesses + "</h1>" +
 						"<img id='bear' src='assets/images/Bear.jpg' class='bear'>";
 	
 
-	function gameResults () {
-		var monk = document.getElementsByName("monk");
-			for(i=0; i<=monk.length; i++) {
-				 if(monk[i].checked){
-		         if(monk[i].value == "Grigori Rasputin") {
-		            correctGuesses++;
-		            break;
-		         }
-		     }
-		}
-
-
-
 		$("#game-box").html(resultsHtml);
 	}
 	//Counter for the timer
-	var counter = 3;
+	var counter = 12;
 	var interval;
 
 

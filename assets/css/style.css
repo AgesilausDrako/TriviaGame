@@ -4,7 +4,8 @@ body {
 }
 
 .jumbotron {
-	background-color: #cc0000;
+	background-color: #000;
+	color: #cc0000;
 }
 
 #timer {
