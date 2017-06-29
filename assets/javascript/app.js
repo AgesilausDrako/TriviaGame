@@ -1,17 +1,25 @@
 $("document").ready(function(){
 	
+	document.getElementById("anthem").play();
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
 	var unansweredGuesses = 0;
-	var $answers = "";
-
 	var correctArray = ["Grigori Rasputin", "Nicholas II", "Georgi Plekhanov",
 					"Alexander Solzhenitsyn", "Yuri Modin"];
+	
 	var gameHtml = "";
 
+	
+	
 		function gameResults () {
-			
-			$answers = $(":checked");
+
+			$("div .form-check").find("[type='radio']").each(function(){
+			    if($(this).prop("checked") === false){
+			       unansweredGuesses++;
+			    }
+			});
+
+			var $answers = $(":checked");
 			for (i=0; i<$answers.length; i++) {
 				console.log($answers[i].value, correctArray[i]);
 				if ($answers[i].value === correctArray[i]) {
@@ -23,7 +31,7 @@ $("document").ready(function(){
 
 			var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
 							"<h1 class='text-center'>Incorrect Answers: " + incorrectGuesses + "</h1>" +
-							"<h1 class='text-center'>Unanswered Questions: " + unansweredGuesses + "</h1>" +
+							"<h1 class='text-center'>Unanswered Questions: " + (unansweredGuesses - 15) + "</h1>" +
 							"<img id='bear' src='assets/images/Bear.jpg' class='bear'>";
 		
 
@@ -64,5 +72,6 @@ $("document").ready(function(){
 	    }
 
 	    run();
+
 
 });
