@@ -8,8 +8,6 @@ $("document").ready(function(){
 					"Alexander Solzhenitsyn", "Yuri Modin"];
 	
 	var gameHtml = "";
-
-	
 	
 		function gameResults () {
 
@@ -19,14 +17,44 @@ $("document").ready(function(){
 			    }
 			});
 
-			var $answers = $(":checked");
-			for (i=0; i<$answers.length; i++) {
-				console.log($answers[i].value, correctArray[i]);
-				if ($answers[i].value === correctArray[i]) {
-					correctGuesses++;
-				} else {
-					incorrectGuesses++;
-				}
+			// var $answers = $(":checked");
+			// for (i=0; i<$answers.length; i++) {
+			// 	console.log($answers[i].value, correctArray[i]);
+			// 	if ($answers[i].value === correctArray[i]) {
+			// 		correctGuesses++;
+			// 	} else {
+			// 		incorrectGuesses++;
+			// 	}
+			// }
+
+			if ($("input[type='radio'][name='monk']:checked").val() === "Grigori Rasputin") {
+				correctGuesses++;
+			} else if ($(":checked").val() != "Grigori Rasputin") {
+				incorrectGuesses++;
+			}
+
+			if ($("input[type='radio'][name='tsar']:checked").val() === "Nicholas II") {
+				correctGuesses++;
+			} else if ($(":checked").val() != "Nicholas II") {
+				incorrectGuesses++;
+			}
+
+			if ($("input[type='radio'][name='book']:checked").val() === "Georgi Plekhanov") {
+				correctGuesses++;
+			} else if ($(":checked").val() != "Georgi Plekhanov") {
+				incorrectGuesses++;
+			}
+
+			if ($("input[type='radio'][name='dissident']:checked").val() === "Alexander Solzhenitsyn") {
+				correctGuesses++;
+			} else if ($(":checked").val() != "Alexander Solzhenitsyn") {
+				incorrectGuesses++;
+			}
+
+			if ($("input[type='radio'][name='agent']:checked").val() === "Yuri Modin") {
+				correctGuesses++;
+			} else if ($(":checked").val() != "Yuri Modin") {
+				incorrectGuesses++;
 			}
 
 			var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
@@ -72,6 +100,5 @@ $("document").ready(function(){
 	    }
 
 	    run();
-
 
 });
