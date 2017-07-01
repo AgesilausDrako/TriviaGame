@@ -15,6 +15,10 @@ body {
 	margin: 0;
 }
 
+.halfway {
+	color: #e6e600;
+}
+
 .almostUp {
 	color: #cc0000;
 }

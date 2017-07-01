@@ -1,104 +1,113 @@
 $("document").ready(function(){
-	
-	document.getElementById("anthem").play();
+
+	//Creates, appends, and autoruns the anthem music
+	$("<audio>").attr({
+	    'src':'assets/audio/Russian-anthem.mp3',
+	    'autoplay' : 'autoplay'
+	}).appendTo("body");
+	// document.getElementById("anthem").play();
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
 	var unansweredGuesses = 0;
 	var correctArray = ["Grigori Rasputin", "Nicholas II", "Georgi Plekhanov",
 					"Alexander Solzhenitsyn", "Yuri Modin"];
 	
-	var gameHtml = "";
-	
-		function gameResults () {
+	function gameResults () {
 
-			$("div .form-check").find("[type='radio']").each(function(){
+		//Checks for unanswered questions
+		$("div .form-check").find("[type='radio']").each(function(){
 			    if($(this).prop("checked") === false){
 			       unansweredGuesses++;
-			    }
+				}
 			});
 
-			// var $answers = $(":checked");
-			// for (i=0; i<$answers.length; i++) {
-			// 	console.log($answers[i].value, correctArray[i]);
-			// 	if ($answers[i].value === correctArray[i]) {
-			// 		correctGuesses++;
-			// 	} else {
-			// 		incorrectGuesses++;
-			// 	}
-			// }
-
-			if ($("input[type='radio'][name='monk']:checked").val() === "Grigori Rasputin") {
-				correctGuesses++;
-			} else if ($(":checked").val() != "Grigori Rasputin") {
-				incorrectGuesses++;
-			}
-
-			if ($("input[type='radio'][name='tsar']:checked").val() === "Nicholas II") {
-				correctGuesses++;
-			} else if ($(":checked").val() != "Nicholas II") {
-				incorrectGuesses++;
-			}
-
-			if ($("input[type='radio'][name='book']:checked").val() === "Georgi Plekhanov") {
-				correctGuesses++;
-			} else if ($(":checked").val() != "Georgi Plekhanov") {
-				incorrectGuesses++;
-			}
-
-			if ($("input[type='radio'][name='dissident']:checked").val() === "Alexander Solzhenitsyn") {
-				correctGuesses++;
-			} else if ($(":checked").val() != "Alexander Solzhenitsyn") {
-				incorrectGuesses++;
-			}
-
-			if ($("input[type='radio'][name='agent']:checked").val() === "Yuri Modin") {
-				correctGuesses++;
-			} else if ($(":checked").val() != "Yuri Modin") {
-				incorrectGuesses++;
-			}
-
-			var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
-							"<h1 class='text-center'>Incorrect Answers: " + incorrectGuesses + "</h1>" +
-							"<h1 class='text-center'>Unanswered Questions: " + (unansweredGuesses - 15) + "</h1>" +
-							"<img id='bear' src='assets/images/Bear.jpg' class='bear'>";
+		//This is a more elegant solution but doesn't render correctly if there are unanswered questions.
+		// var $answers = $(":checked");
+		// for (i=0; i<$answers.length; i++) {
+		// 	console.log($answers[i].value, correctArray[i]);
+		// 	if ($answers[i].value === correctArray[i]) {
+		// 		correctGuesses++;
+		// 	} else {
+		// 		incorrectGuesses++;
+		// 	}
+		// }
 		
-
-			$("#game-box").html(resultsHtml);
+		
+		//These statements work but also record unanswered as incorrect
+		if ($("input[type='radio'][name='monk']:checked").val() === "Grigori Rasputin") {
+			correctGuesses++;
+		} else if ($(":checked").val() != "Grigori Rasputin") {
+			incorrectGuesses++;
 		}
-		//Counter for the timer
-		var counter = 12;
-		var interval;
+
+		if ($("input[type='radio'][name='tsar']:checked").val() === "Nicholas II") {
+			correctGuesses++;
+		} else if ($(":checked").val() != "Nicholas II") {
+			incorrectGuesses++;
+		}
+
+		if ($("input[type='radio'][name='book']:checked").val() === "Nikolai Chernyshevsky") {
+			correctGuesses++;
+		} else if ($(":checked").val() != "Nikolai Chernyshevsky") {
+			incorrectGuesses++;
+		}
+
+		if ($("input[type='radio'][name='dissident']:checked").val() === "Alexander Solzhenitsyn") {
+			correctGuesses++;
+		} else if ($(":checked").val() != "Alexander Solzhenitsyn") {
+			incorrectGuesses++;
+		}
+
+		if ($("input[type='radio'][name='agent']:checked").val() === "Yuri Modin") {
+			correctGuesses++;
+		} else if ($(":checked").val() != "Yuri Modin") {
+			incorrectGuesses++;
+		}
+
+		var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
+						"<h1 class='text-center'>Incorrect Answers: " + incorrectGuesses + "</h1>" +
+						"<h1 class='text-center'>Unanswered Questions: " + (unansweredGuesses - 15) + "</h1>" +
+						"<img id='bear' src='assets/images/Bear.jpg' class='bear'>";
+
+		//Updates the game-box with results
+		$("#game-box").html(resultsHtml);
+	}
+	//Counter for the timer
+	var counter = 60;
+	var interval;
 
 
-		function run() {
-	      interval = setInterval(decrement, 1000);
-	    }
+	function run() {
+      interval = setInterval(decrement, 1000);
+    }
 
-	    function decrement() {
-	    	counter--;
-	    	$("#counter").html(counter);
+    function decrement() {
+    	counter--;
+    	$("#counter").html(counter);
+    	if (counter <= 30) {
+    		$("#remaining").addClass("halfway");
+    	}
+    	if (counter <= 15) {
+    		$("#remaining").removeClass("halfway");
+    		$("#remaining").addClass("almostUp");
+    	}
+      	if (counter === 0) {
+        //Runs the stop function when counter equals 0
+        stop();
+        //Stops the anthem music by removing the element
+        $("audio").remove();
+        //Calls the gameResults function
+        gameResults();
+      }
+    }
 
-	    	if (counter <= 20) {
-	    		$("#remaining").addClass("almostUp");
-	    	}
-	    	//  Once number hits zero...
-	      	if (counter === 0) {
+    //Stop function
+    function stop() {
 
-	        //  ...run the stop function.
-	        stop();
+      clearInterval(interval);
+      $("#remaining").removeClass("almostUp");
+    }
 
-	        gameResults();
-
-	      }
-	    }
-
-	    //  The stop function
-	    function stop() {
-
-	      clearInterval(interval);
-	      $("#remaining").removeClass("almostUp");
-	    }
-
-	    run();
+    run();
 
 });
