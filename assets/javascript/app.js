@@ -9,9 +9,9 @@ $("document").ready(function(){
 	var correctGuesses = 0;
 	var incorrectGuesses = 0;
 	var unansweredGuesses = 0;
-	var correctArray = ["Grigori Rasputin", "Nicholas II", "Georgi Plekhanov",
+	var correctArray = ["Grigori Rasputin", "Nicholas II", "Nicolai Chernyshevsky",
 					"Alexander Solzhenitsyn", "Yuri Modin"];
-	
+
 	function gameResults () {
 
 		//Checks for unanswered questions
@@ -31,7 +31,6 @@ $("document").ready(function(){
 		// 		incorrectGuesses++;
 		// 	}
 		// }
-		
 		
 		//These statements work but also record unanswered as incorrect
 		if ($("input[type='radio'][name='monk']:checked").val() === "Grigori Rasputin") {
@@ -67,13 +66,22 @@ $("document").ready(function(){
 		var resultsHtml = "<h1 class='text-center'>Correct Answers: " + correctGuesses + "</h1>" +
 						"<h1 class='text-center'>Incorrect Answers: " + incorrectGuesses + "</h1>" +
 						"<h1 class='text-center'>Unanswered Questions: " + (unansweredGuesses - 15) + "</h1>" +
+						"<button type='button' class='btn btn-inverse'>Answers</button>" +
 						"<img id='bear' src='assets/images/Bear.jpg' class='bear'>";
-
 		//Updates the game-box with results
 		$("#game-box").html(resultsHtml);
+
+		$("button").click(function() {
+	    	var answersHtml = "<h1 class='text-center'>Grigori Rasputin</h1>" +
+		    				  "<h1 class='text-center'>Nicholas II</h1>" +
+		    				  "<h1 class='text-center'>Nicholai Chernyshevsky</h1>" +
+		    				  "<h1 class='text-center'>Alexander Solzhenitsyn</h1>" +
+		    				  "<h1 class='text-center'>Yuri Modin</h1>";
+	    	$("#game-box").html(answersHtml);
+    	});
 	}
 	//Counter for the timer
-	var counter = 60;
+	var counter = 5;
 	var interval;
 
 
