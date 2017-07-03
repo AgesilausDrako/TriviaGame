@@ -25,6 +25,9 @@ body {
 
 #game-box {
 	font-size: 2em;
+}
+
+.game-screen {
 	background-image: url("../images/green_cup.png");
 }
 
@@ -41,6 +44,7 @@ footer {
 .btn {
 	color: #cc0000;
 	background-color: #000;
+	border: .05em solid #cc0000;
 	font-size: 1.5em;
 	padding: 1em 5em;
 	margin-bottom: .5em;
@@ -48,6 +52,12 @@ footer {
 
 .btn:hover {
 	color: #fff;
+	border-color: #fff;
+}
+
+.answer {
+	background-color: #000;
+	color: #cc0000;
 }
 
 /* Media Queries */
@@ -64,6 +74,10 @@ footer {
 
 @media screen and (min-width: 1400px){
   .btn {
+	margin-left: 6.5em;
+  }
+
+  .answer-flag {
 	margin-left: 6.5em;
   }
 }

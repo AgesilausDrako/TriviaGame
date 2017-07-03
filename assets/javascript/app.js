@@ -72,16 +72,19 @@ $("document").ready(function(){
 		$("#game-box").html(resultsHtml);
 
 		$("button").click(function() {
-	    	var answersHtml = "<h1 class='text-center'>Grigori Rasputin</h1>" +
-		    				  "<h1 class='text-center'>Nicholas II</h1>" +
-		    				  "<h1 class='text-center'>Nicholai Chernyshevsky</h1>" +
-		    				  "<h1 class='text-center'>Alexander Solzhenitsyn</h1>" +
-		    				  "<h1 class='text-center'>Yuri Modin</h1>";
+	    	var answersHtml = "<h1 class='text-center'>1. Grigori Rasputin</h1>" +
+		    				  "<h1 class='text-center'>2. Nicholas II</h1>" +
+		    				  "<h1 class='text-center'>3. Nicholai Chernyshevsky</h1>" +
+		    				  "<h1 class='text-center'>4. Alexander Solzhenitsyn</h1>" +
+		    				  "<h1 class='text-center'>5. Yuri Modin</h1>" +
+		    				  "<img src='assets/images/Russian_Empire.png' class='img-responsive answer-flag'>";
+		    $("#game-box").removeClass("game-screen");
+		    $("#game-box").addClass("answer");
 	    	$("#game-box").html(answersHtml);
     	});
 	}
 	//Counter for the timer
-	var counter = 5;
+	var counter = 60;
 	var interval;
 
 
